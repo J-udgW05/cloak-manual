@@ -1,7 +1,7 @@
 /* Cloak Manual — Offline Service Worker */
 'use strict';
 
-var CACHE_NAME = 'cloak-manual-v36';
+var CACHE_NAME = 'cloak-manual-v37';
 var ASSETS = [
     './',
     './index.html',
@@ -35,7 +35,15 @@ var ASSETS = [
 self.addEventListener('install', function (event) {
     event.waitUntil(
         caches.open(CACHE_NAME).then(function (cache) {
-            return cache.addAll(ASSETS);
+            return Promise.all(
+                ASSETS.map(function (url) {
+                    return fetch(new Request(url, { cache: 'reload' })).then(function (response) {
+                        if (response && response.status === 200) {
+                            return cache.put(url, response);
+                        }
+                    });
+                })
+            );
         }).then(function () {
             return self.skipWaiting();
         })
@@ -65,38 +73,23 @@ self.addEventListener('fetch', function (event) {
     var accept = event.request.headers.get('accept') || '';
     var isHtml = event.request.mode === 'navigate' || accept.indexOf('text/html') !== -1;
 
-    if (isHtml) {
-        event.respondWith(
-            fetch(event.request).then(function (networkResponse) {
-                if (networkResponse && networkResponse.status === 200 && networkResponse.type === 'basic') {
-                    var copy = networkResponse.clone();
-                    caches.open(CACHE_NAME).then(function (cache) {
-                        cache.put(event.request, copy);
-                    });
-                }
-                return networkResponse;
-            }).catch(function () {
-                return caches.match(event.request).then(function (cached) {
-                    return cached || caches.match('./index.html');
-                });
-            })
-        );
-        return;
-    }
-
     event.respondWith(
-        caches.match(event.request).then(function (cachedResponse) {
-            if (cachedResponse) {
-                return cachedResponse;
+        fetch(event.request).then(function (networkResponse) {
+            if (networkResponse && networkResponse.status === 200 && networkResponse.type === 'basic') {
+                var copy = networkResponse.clone();
+                caches.open(CACHE_NAME).then(function (cache) {
+                    cache.put(event.request, copy);
+                });
             }
-            return fetch(event.request).then(function (networkResponse) {
-                if (networkResponse && networkResponse.status === 200 && networkResponse.type === 'basic') {
-                    var responseClone = networkResponse.clone();
-                    caches.open(CACHE_NAME).then(function (cache) {
-                        cache.put(event.request, responseClone);
-                    });
+            return networkResponse;
+        }).catch(function () {
+            return caches.match(event.request).then(function (cached) {
+                if (cached) {
+                    return cached;
                 }
-                return networkResponse;
+                if (isHtml) {
+                    return caches.match('./index.html');
+                }
             });
         })
     );

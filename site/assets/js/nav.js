@@ -229,10 +229,20 @@
     }
 
     // Точный расчет целевой позиции якорного перехода
+    function getPageScrollTop() {
+        return Math.max(
+            window.pageYOffset || 0,
+            window.scrollY || 0,
+            (document.scrollingElement && document.scrollingElement.scrollTop) || 0,
+            (document.documentElement && document.documentElement.scrollTop) || 0,
+            (document.body && document.body.scrollTop) || 0
+        );
+    }
+
     function getTargetScrollTop(targetEl) {
         var headerOffset = 72;
         var rect = targetEl.getBoundingClientRect();
-        var currentScroll = window.pageYOffset || document.documentElement.scrollTop || 0;
+        var currentScroll = getPageScrollTop();
         return Math.max(0, rect.top + currentScroll - headerOffset);
     }
 
@@ -257,6 +267,10 @@
             top: topPos,
             behavior: behavior
         });
+        if (document.body && document.body.scrollTop > 0) {
+            try { document.body.scrollTo({ top: topPos, behavior: behavior }); } catch (e) { document.body.scrollTop = topPos; }
+        }
+        if (window.syncToTop) window.syncToTop();
 
         if (updateHistory) {
             try {
@@ -268,6 +282,7 @@
 
         jumpTimer = setTimeout(function () {
             isNavJumping = false;
+            if (window.syncToTop) window.syncToTop();
             // Финальная синхронизация после окончания движения
             var finalId = calculateActiveSectionId();
             if (finalId) {
@@ -279,7 +294,7 @@
     // Адаптивный детерминированный расчет активного раздела
     function calculateActiveSectionId() {
         var doc = document.documentElement;
-        var scrollTop = window.pageYOffset || doc.scrollTop || 0;
+        var scrollTop = getPageScrollTop();
         var winHeight = window.innerHeight;
         var docHeight = doc.scrollHeight;
 
@@ -416,6 +431,7 @@
     }
 
     window.addEventListener('scroll', onScroll, { passive: true });
+    document.addEventListener('scroll', onScroll, { capture: true, passive: true });
     window.addEventListener('orientationchange', onScroll);
 
     // Initial position setup on load

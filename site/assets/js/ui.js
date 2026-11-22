@@ -174,7 +174,9 @@
     'use strict';
     if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.protocol === 'http:')) {
         window.addEventListener('load', function () {
-            navigator.serviceWorker.register('./sw.js').catch(function () {});
+            navigator.serviceWorker.register('./sw.js', { updateViaCache: 'none' }).then(function (reg) {
+                try { reg.update(); } catch (e) {}
+            }).catch(function () {});
         });
     }
 })();
