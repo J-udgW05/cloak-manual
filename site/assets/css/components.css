@@ -231,7 +231,7 @@ a.tag:hover .ext-arrow {
 .link-pair {
     display: inline-flex;
     align-items: stretch;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     max-width: 100%;
     border: 1px solid var(--color-border-hover);
     border-radius: 4px;
@@ -240,6 +240,9 @@ a.tag:hover .ext-arrow {
 }
 
 .link-pair > a.tag {
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow-wrap: anywhere;
     border: none;
     border-radius: 0;
     background: transparent;
@@ -252,12 +255,17 @@ a.tag:hover .ext-arrow {
 }
 
 .link-pair > .archive-pill {
+    flex-shrink: 0;
     border: none;
     border-left: 1px solid var(--color-border);
     border-radius: 0;
     height: auto;
     background: var(--color-bg-alt);
     padding: 0 9px;
+}
+
+.compare-table td .link-pair + .link-pair {
+    margin-top: 6px;
 }
 
 .tag-archive {
@@ -593,6 +601,7 @@ a.tag:hover .ext-arrow {
     }
 
     .link-pair > a.tag {
+        flex: 0 0 auto;
         width: 100%;
         justify-content: space-between;
         padding: 9px 12px;
