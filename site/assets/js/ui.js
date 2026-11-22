@@ -30,32 +30,24 @@
 (function () {
     'use strict';
 
-    var BRAND = {
-        ru: 'Плащ анонимности: Руководство',
-        en: 'Cloak Manual'
-    };
-
-    var PAGE_TITLES = {
-        index: { ru: 'Плащ анонимности: Руководство', en: 'Cloak Manual' },
-        privacy: { ru: 'Политика конфиденциальности', en: 'Privacy Policy' },
-        disclaimer: { ru: 'Отказ от ответственности', en: 'Legal Disclaimer' },
-        license: { ru: 'Лицензия открытого контента', en: 'Open Content License' }
-    };
-
     var langDropdown = document.getElementById('lang-dropdown');
     var langBtn = document.getElementById('lang-toggle');
     var segBtns = document.querySelectorAll('.lang-seg-btn[data-lang-opt]');
 
-    function getPageKey() {
+    function isEnPage() {
+        return /(?:^|\/)en(?:\/|$)/i.test(window.location.pathname || '');
+    }
+
+    function getPageFile() {
         var path = (window.location.pathname || '').toLowerCase();
-        if (path.indexOf('privacy.html') !== -1) return 'privacy';
-        if (path.indexOf('disclaimer.html') !== -1) return 'disclaimer';
-        if (path.indexOf('license.html') !== -1) return 'license';
-        return 'index';
+        if (path.indexOf('privacy.html') !== -1) return 'privacy.html';
+        if (path.indexOf('disclaimer.html') !== -1) return 'disclaimer.html';
+        if (path.indexOf('license.html') !== -1) return 'license.html';
+        return 'index.html';
     }
 
     function getLang() {
-        return document.documentElement.getAttribute('data-lang') === 'en' ? 'en' : 'ru';
+        return isEnPage() ? 'en' : 'ru';
     }
 
     function closeDropdown() {
@@ -67,26 +59,9 @@
         }
     }
 
-    function applyLang(lang) {
-        var brand = BRAND[lang] || BRAND.ru;
-        var pageKey = getPageKey();
-        var titleEntry = PAGE_TITLES[pageKey] || PAGE_TITLES.index;
-
+    function syncLangUI(lang) {
         document.documentElement.setAttribute('data-lang', lang);
         document.documentElement.setAttribute('lang', lang);
-        try {
-            localStorage.setItem('bp_lang', lang);
-        } catch (e) {}
-
-        document.querySelectorAll('[data-i18n-brand]').forEach(function (el) {
-            el.textContent = brand;
-        });
-
-        document.querySelectorAll('.footer-copy').forEach(function (el) {
-            el.textContent = '© 2026 ' + brand + '. Свободное распространение под CC BY-NC-SA 4.0.';
-        });
-
-        document.title = titleEntry[lang] || titleEntry.ru;
 
         segBtns.forEach(function (btn) {
             var opt = btn.getAttribute('data-lang-opt');
@@ -106,7 +81,8 @@
         }
     }
 
-    applyLang(getLang());
+    var currentLang = getLang();
+    syncLangUI(currentLang);
 
     if (langBtn && langDropdown) {
         langBtn.addEventListener('click', function (e) {
@@ -119,10 +95,21 @@
             btn.addEventListener('click', function (e) {
                 e.stopPropagation();
                 var opt = btn.getAttribute('data-lang-opt');
-                if (opt === 'ru' || opt === 'en') {
-                    applyLang(opt);
+                if (opt !== 'ru' && opt !== 'en') {
+                    closeDropdown();
+                    return;
                 }
+                if (opt === currentLang) {
+                    closeDropdown();
+                    return;
+                }
+                try {
+                    localStorage.setItem('bp_lang', opt);
+                } catch (err) {}
+                var pageFile = getPageFile();
+                var hash = window.location.hash || '';
                 closeDropdown();
+                window.location.href = (opt === 'en' ? './en/' : '../') + pageFile + hash;
             });
         });
 
@@ -281,8 +268,10 @@
 (function () {
     'use strict';
     if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.protocol === 'http:')) {
+        var isEnPage = /(?:^|\/)en(?:\/|$)/i.test(window.location.pathname || '');
+        var swPath = isEnPage ? '../sw.js' : './sw.js';
         window.addEventListener('load', function () {
-            navigator.serviceWorker.register('./sw.js', { updateViaCache: 'none' }).then(function (reg) {
+            navigator.serviceWorker.register(swPath, { updateViaCache: 'none' }).then(function (reg) {
                 try { reg.update(); } catch (e) {}
             }).catch(function () {});
         });

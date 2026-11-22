@@ -17,11 +17,8 @@
             metaTheme.setAttribute('content', theme === 'light' ? '#f6f8fb' : '#0d1017');
         }
 
-        var lang = localStorage.getItem('bp_lang');
-        if (lang !== 'en' && lang !== 'ru') {
-            lang = 'ru';
-        }
-        document.documentElement.setAttribute('data-lang', lang);
-        document.documentElement.setAttribute('lang', lang);
+        var pageLang = /(?:^|\/)en(?:\/|$)/i.test(window.location.pathname) ? 'en' : 'ru';
+        document.documentElement.setAttribute('data-lang', pageLang);
+        document.documentElement.setAttribute('lang', pageLang);
     } catch (e) { }
 })();

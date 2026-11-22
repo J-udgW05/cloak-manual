@@ -1,7 +1,7 @@
 /* Cloak Manual — Offline Service Worker */
 'use strict';
 
-var CACHE_NAME = 'cloak-manual-v39';
+var CACHE_NAME = 'cloak-manual-v40';
 var ASSETS = [
     './',
     './index.html',
@@ -9,6 +9,11 @@ var ASSETS = [
     './privacy.html',
     './disclaimer.html',
     './license.html',
+    './en/',
+    './en/index.html',
+    './en/privacy.html',
+    './en/disclaimer.html',
+    './en/license.html',
     './assets/img/logo.svg',
     './assets/css/tokens.css',
     './assets/css/base.css',
@@ -78,6 +83,9 @@ self.addEventListener('fetch', function (event) {
                     return cached;
                 }
                 if (isHtml) {
+                    if (event.request.url && event.request.url.indexOf('/en/') !== -1) {
+                        return caches.match('./en/index.html');
+                    }
                     return caches.match('./index.html');
                 }
             });

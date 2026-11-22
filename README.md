@@ -14,7 +14,7 @@ Practical handbook on digital privacy, anonymity, OS hardening, and operational 
 
 ## Overview
 
-Cloak Manual is a structured, offline-capable reference covering **153 sections** across 8 chapters. Content is currently published in Russian, with English localization planned.
+Cloak Manual is a structured, offline-capable reference covering **153 sections** across 8 chapters. Published in **Russian** ([`/`](https://j-udgw05.github.io/cloak-manual/)) and **English** ([`/en/`](https://j-udgw05.github.io/cloak-manual/en/)).
 
 1. **Introduction & Core Concepts (`01–06`)** — privacy fundamentals, doxing mechanics, threat modeling, and baseline mitigation.
 2. **Digital Footprint & OSINT (`07–16`)** — open-source intelligence, data broker removal, account hygiene, legal remedies (GDPR, local statutes), AI profiling, and wearables.
@@ -37,10 +37,10 @@ The web application is a self-contained static client with no backend, no third-
   default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none';
   ```
   `connect-src 'none'` blocks all outbound `fetch`, `XHR`, and `WebSocket` requests at the browser level, and `script-src 'self'` blocks inline scripts.
-- **100% No-JS Ready:** all 153 sections and table-of-contents anchor links are embedded directly in `site/index.html`, ensuring full access even in Tor Browser *Safest* mode (`JavaScript` disabled).
+- **100% No-JS Ready:** all 153 sections and table-of-contents anchor links are embedded directly in `site/index.html` (RU) and `site/en/index.html` (EN), ensuring full access even in Tor Browser *Safest* mode (`JavaScript` disabled).
 - **External Link Isolation:** all 4190+ external links enforce `target="_blank" rel="noopener noreferrer nofollow"` alongside `Referrer-Policy: no-referrer`.
 - **Security Headers ([`site/_headers`](site/_headers)):** `X-Frame-Options: DENY`, `X-Content-Type-Options: nosniff`, `Referrer-Policy: no-referrer`, and restrictive `Permissions-Policy`.
-- **Offline PWA ([`site/sw.js`](site/sw.js)):** Service Worker (`cloak-manual-v39`) caches all HTML, CSS, and JS modules for full offline operation.
+- **Offline PWA ([`site/sw.js`](site/sw.js)):** Service Worker (`cloak-manual-v40`) caches all RU & EN HTML, CSS, and JS modules for full offline operation.
 
 ---
 
@@ -52,17 +52,22 @@ cloak-manual/
 │   └── workflows/
 │       └── deploy-pages.yml       # Automated GitHub Pages deployment from ./site
 ├── site/
-│   ├── index.html                 # Main handbook (all 153 sections embedded, 100% No-JS ready)
-│   ├── privacy.html               # Zero-logs privacy policy
-│   ├── disclaimer.html            # Defense-only legal disclaimer
-│   ├── license.html               # CC BY-NC-SA 4.0 & MIT licensing details
+│   ├── index.html                 # Russian handbook (all 153 sections embedded, 100% No-JS ready)
+│   ├── privacy.html               # Zero-logs privacy policy (RU)
+│   ├── disclaimer.html            # Defense-only legal disclaimer (RU)
+│   ├── license.html               # CC BY-NC-SA 4.0 & MIT licensing details (RU)
+│   ├── en/
+│   │   ├── index.html             # English handbook (all 153 sections embedded, 100% No-JS ready)
+│   │   ├── privacy.html           # Zero-logs privacy policy (EN)
+│   │   ├── disclaimer.html        # Defense-only legal disclaimer (EN)
+│   │   └── license.html           # CC BY-NC-SA 4.0 & MIT licensing details (EN)
 │   ├── manifest.json              # PWA Web App Manifest
-│   ├── sw.js                      # Offline Service Worker (cloak-manual-v39)
+│   ├── sw.js                      # Offline Service Worker (cloak-manual-v40)
 │   ├── _headers                   # Security HTTP headers (Cloudflare Pages / Netlify)
 │   └── assets/
 │       ├── css/                   # Modular design tokens and stylesheets
 │       ├── img/                   # Brand SVG logo
-│       └── js/                    # Client navigation, search, copy, and theme modules
+│       └── js/                    # Client navigation, search, copy, language, and theme modules
 ├── .gitignore
 └── README.md
 ```
