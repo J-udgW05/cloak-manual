@@ -56,7 +56,7 @@ cloak-manual/
 │   ├── disclaimer.html            # Defense-only legal disclaimer
 │   ├── license.html               # CC BY-NC-SA 4.0 & MIT licensing details
 │   ├── manifest.json              # PWA Web App Manifest
-│   ├── sw.js                      # Offline Service Worker (cloak-manual-v34)
+│   ├── sw.js                      # Offline Service Worker (cloak-manual-v35)
 │   ├── _headers                   # Security HTTP headers (Cloudflare Pages / Netlify)
 │   └── assets/
 │       ├── css/                   # Modular design tokens and stylesheets
