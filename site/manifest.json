@@ -1,0 +1,19 @@
+{
+  "name": "Cloak Manual",
+  "short_name": "Cloak Manual",
+  "description": "Practical handbook on digital privacy, anonymity, and operational security (OPSEC)",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#0d1017",
+  "theme_color": "#0d1017",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%20fill='none'%20stroke='%2338bdf8'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'%3E%3Cpath%20d='M7%209l2-5h6l1%205'/%3E%3Cline%20x1='4'%20y1='9'%20x2='20'%20y2='9'/%3E%3Cpath%20d='M8%209c0%203%201%205%203%206l-4%205h10l-2-6'/%3E%3C/svg%3E",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

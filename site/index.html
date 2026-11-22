@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Cloak Manual</title>
+ <meta name="description"
+        content="Полное руководство по удалению личных данных из интернета, защите от доксинга и цифровой приватности. Стилометрия, fingerprinting, метаданные, GDPR, 152-ФЗ.">
+ <meta name="keywords"
+        content="доксинг, приватность, удаление данных, цифровой след, OSINT, fingerprinting, GDPR, 152-ФЗ, Telegram уязвимости, анонимность">
+ <meta name="author" content="Cloak Manual">
+ <meta name="robots" content="index, follow">
+ <meta name="language" content="ru">
+ <meta property="og:type" content="article">
+ <meta property="og:title" content="Cloak Manual">
+ <meta property="og:description"
+        content="Полное руководство по удалению личных данных из интернета и защите от доксинга. Основы цифровой приватности.">
+ <meta property="og:locale" content="ru_RU">
+ <meta name="referrer" content="no-referrer">
+ <meta name="theme-color" content="#0d1017" id="theme-color-meta">
+ <meta name="color-scheme" content="dark light">
+ <meta http-equiv="Permissions-Policy"
+        content="camera=(), microphone=(), geolocation=(), payment=(), usb=(), browsing-topics=()">
+ <meta http-equiv="Content-Security-Policy"
+        content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none';">
+ <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%20fill='none'%20stroke='%2338bdf8'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'%3E%3Cpath%20d='M7%209l2-5h6l1%205'/%3E%3Cline%20x1='4'%20y1='9'%20x2='20'%20y2='9'/%3E%3Cpath%20d='M8%209c0%203%201%205%203%206l-4%205h10l-2-6'/%3E%3C/svg%3E">
+ <link rel="manifest" href="manifest.json">
+    <script src="assets/js/theme-init.js"></script>
+    <link rel="stylesheet" href="assets/css/tokens.css">
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/layout.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+</head>
+<body id="top">
+    <a href="#main-content" class="skip-link">Перейти к содержимому</a>
+
+ <header class="header">
+ <div class="header-inner">
+ <a href="#top" class="site-logo">
+ <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" aria-hidden="true">
+                    <path d="M7 9l2-5h6l1 5" />
+                    <line x1="4" y1="9" x2="20" y2="9" />
+                    <path d="M8 9c0 3 1 5 3 6l-4 5h10l-2-6" />
+                </svg>
+                <span class="site-logo-text" data-i18n-brand>Плащ анонимности: Руководство</span></a>
+ <div class="header-actions">
+ <button class="lang-toggle" id="lang-toggle" type="button" aria-label="Переключить язык на английский (EN)" title="Переключить язык на английский (EN)">RU</button>
+                <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Переключить тему" title="Переключить тему">
+ <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+ <circle cx="12" cy="12" r="5"></circle>
+ <line x1="12" y1="1" x2="12" y2="3"></line>
+ <line x1="12" y1="21" x2="12" y2="23"></line>
+ <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+ <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+ <line x1="1" y1="12" x2="3" y2="12"></line>
+ <line x1="21" y1="12" x2="23" y2="12"></line>
+ <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+ <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+ </svg>
+ <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+ <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+ </svg>
+ </button>
+ <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Открыть меню" aria-expanded="false"
+                aria-controls="mobile-menu">
+ <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+ <line x1="3" y1="6" x2="21" y2="6" />
+ <line x1="3" y1="12" x2="21" y2="12" />
+ <line x1="3" y1="18" x2="21" y2="18" />
+ </svg>
+ </button>
+</div>
+</div>
+ </header>
+
+ <div class="overlay" id="overlay" aria-hidden="true"></div>
+
+ <div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Навигация">
+ <div class="mobile-menu-header">
+ <span>Навигация</span>
+ <button class="close-btn" id="close-btn" aria-label="Закрыть меню">
+ <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+ <line x1="18" y1="6" x2="6" y2="18" />
+ <line x1="6" y1="6" x2="18" y2="18" />
+ </svg>
+ </button>
+</div>
+ <div class="mobile-search-wrap">
+ <div class="toc-search-field">
+    <input type="search" id="mobile-toc-search" class="toc-search-input" placeholder="Поиск по оглавлению..." aria-label="Поиск по оглавлению">
+    <button type="button" class="toc-search-clear" id="mobile-toc-search-clear" aria-label="Очистить поиск" title="Очистить">&times;</button>
+ </div>
+</div>
+ <nav class="mobile-menu-nav" aria-label="Мобильное оглавление">
+ <div class="toc-empty-state" id="mobile-empty" style="display:none;">Ничего не найдено</div>
+ <div class="nav-chapter-header">Раздел I. Введение и концепция</div>
+ <a href="#intro" class="nav-link">01. Вступление</a>
+ <a href="#preface" class="nav-link">02. Предисловие</a>
+ <a href="#doxing" class="nav-link">03. Что такое докс?</a>
+ <a href="#fear" class="nav-link">04. Почему бояться?</a>
+ <a href="#privacy" class="nav-link">05. О приватности</a>
+ <a href="#action" class="nav-link">06. И что же делать?</a>
+ <div class="nav-chapter-header">Раздел II. Цифровой след и OSINT</div>
+ <a href="#footprint" class="nav-link">07. Цифровой след</a>
+ <a href="#dossier" class="nav-link">08. Поиск: Досье</a>
+ <a href="#resources" class="nav-link">09. Поиск: Ресурсы</a>
+ <a href="#tactics" class="nav-link">10. Поиск: Тактика</a>
+ <a href="#cleanup" class="nav-link">11. Поиск: Действия</a>
+ <a href="#deletion" class="nav-link">12. Удаление данных</a>
+ <a href="#legal-self" class="nav-link">13. Юридическая самооборона</a>
+ <a href="#masterlist" class="nav-link">14. Мастер-список</a>
+ <a href="#ai" class="nav-link">15. ИИ-анализ</a>
+ <a href="#wearable" class="nav-link">16. Носимые шпионы</a>
+ <div class="nav-chapter-header">Раздел III. Идентификаторы и слежка</div>
+ <a href="#ip" class="nav-link">17. Ваш IP-адрес</a>
+ <a href="#dns" class="nav-link">18. Ваши DNS-запросы</a>
+ <a href="#hardware-ids" class="nav-link">19. Аппаратные идентификаторы</a>
+ <a href="#wireless" class="nav-link">20. Беспроводная слежка</a>
+ <a href="#correlation" class="nav-link">21. Корреляционные атаки</a>
+ <a href="#fingerprint" class="nav-link">22. Fingerprinting 2.0</a>
+ <a href="#cpu" class="nav-link">23. Ваш процессор</a>
+ <a href="#telemetry" class="nav-link">24. Телеметрия ОС</a>
+ <a href="#smartdevices" class="nav-link">25. Умные устройства</a>
+ <a href="#metadata-you" class="nav-link">26. Ваши метаданные</a>
+ <a href="#behavior" class="nav-link">27. Поведенческий след</a>
+ <a href="#reallife" class="nav-link">28. Реальная жизнь и OSINT</a>
+ <a href="#biometrics" class="nav-link">29. Лицо, голос, биометрия</a>
+ <a href="#gait" class="nav-link">30. Распознавание походки</a>
+ <div class="nav-chapter-header">Раздел IV. Атаки, уязвимости и угрозы</div>
+ <a href="#phishing" class="nav-link">31. Фишинг и социнженерия</a>
+ <a href="#malware" class="nav-link">32. Вредоносное ПО</a>
+ <a href="#badusb" class="nav-link">33. Вредоносные USB</a>
+ <a href="#firmware" class="nav-link">34. Бэкдоры в прошивке</a>
+ <a href="#watermarks" class="nav-link">35. Водяные знаки</a>
+ <a href="#pixelation" class="nav-link">36. Размытие и пикселизация</a>
+ <a href="#crypto" class="nav-link">37. Криптовалютные транзакции</a>
+ <a href="#cloudbackup" class="nav-link">38. Облачные резервные копии</a>
+ <a href="#sidechannel" class="nav-link">39. Атаки по сторонним каналам</a>
+ <a href="#forensics" class="nav-link">40. Криминалистика устройств</a>
+ <a href="#weakcrypto" class="nav-link">41. Плохая криптография</a>
+ <a href="#nolog" class="nav-link">42. Политики «без логов»</a>
+ <a href="#airgap" class="nav-link">43. Атаки на воздушные зазоры</a>
+ <a href="#transparency" class="nav-link">44. Отчёты о прозрачности</a>
+ <a href="#extra-resources" class="nav-link">45. Дополнительные ресурсы</a>
+ <div class="nav-chapter-header">Раздел V. Модели угроз и анонимные маршруты</div>
+ <a href="#zerotrust" class="nav-link">46. Модель Zero Trust</a>
+ <a href="#routes" class="nav-link">47. Выбор маршрута</a>
+ <a href="#threatmodel" class="nav-link">48. Модель угроз и противники</a>
+ <a href="#phonenumber" class="nav-link">49. Анонимный номер телефона</a>
+ <a href="#workspace" class="nav-link">50. Флешка и безопасные места</a>
+ <a href="#route-tor" class="nav-link">51. Маршрут Tor Browser</a>
+ <a href="#route-tails" class="nav-link">52. Маршрут Tails</a>
+ <a href="#hiddenvm" class="nav-link">53. Правдоподобная отрицаемость</a>
+ <a href="#laptop" class="nav-link">54. Выделенный ноутбук</a>
+ <a href="#bios" class="nav-link">55. Настройка BIOS/UEFI</a>
+ <a href="#tamper" class="nav-link">56. Защита от вмешательства</a>
+ <a href="#route-whonix" class="nav-link">57. Маршрут Whonix</a>
+ <div class="nav-chapter-header">Раздел VI. ОС, Виртуализация и Шифрование</div>
+ <a href="#encryption-attacks" class="nav-link">58. Атаки на шифрование</a>
+ <a href="#localsleaks" class="nav-link">59. Локальные утечки на хосте</a>
+ <a href="#host-linux" class="nav-link">60. Хостовая ОС Linux</a>
+ <a href="#host-macos" class="nav-link">61. Хостовая ОС macOS</a>
+ <a href="#host-windows" class="nav-link">62. Хостовая ОС Windows</a>
+ <a href="#veracrypt-simple" class="nav-link">63. Маршрут A/B: VeraCrypt</a>
+ <a href="#veracrypt-hidden" class="nav-link">64. Маршрут C: скрытая ОС</a>
+ <a href="#virtualbox" class="nav-link">65. VirtualBox и изоляция</a>
+ <a href="#connection" class="nav-link">66. Выбор метода подключения</a>
+ <a href="#comparison" class="nav-link">67. Сравнение и рекомендации</a>
+ <a href="#vbox-hardening" class="nav-link">68. Укрепление VirtualBox</a>
+ <a href="#whonix-setup" class="nav-link">69. Настройка Whonix</a>
+ <a href="#vm-linux" class="nav-link">70. ВМ Linux / Whonix</a>
+ <a href="#vm-windows" class="nav-link">71. ВМ Windows 10/11</a>
+ <a href="#vm-android-macos" class="nav-link">72. ВМ Android и macOS</a>
+ <a href="#keepass-vpn" class="nav-link">73. KeePassXC и VPN-клиент</a>
+ <a href="#kill-switch" class="nav-link">74. Аварийный выключатель ВМ</a>
+ <a href="#qubes" class="nav-link">75. Путь Qubes OS</a>
+ <a href="#qubes-setup" class="nav-link">76. Установка Qubes OS</a>
+ <a href="#qubes-vpn" class="nav-link">77. Укрепление и VPN в Qubes</a>
+ <a href="#qubes-guests" class="nav-link">78. Android и Windows в Qubes</a>
+ <div class="nav-chapter-header">Раздел VII. Анонимные личности, связь и софт</div>
+ <a href="#attribution" class="nav-link">79. Корреляция и атрибуция</a>
+ <a href="#captcha" class="nav-link">80. CAPTCHA и барьеры</a>
+ <a href="#verification" class="nav-link">81. Методы верификации аккаунта</a>
+ <a href="#going-online" class="nav-link">82. Выход в сеть: чек-лист</a>
+ <a href="#identities" class="nav-link">83. Создание анонимных личностей</a>
+ <a href="#platforms" class="nav-link">84. Обзор платформ</a>
+ <a href="#exitnode-names" class="nav-link">85. Выходной узел и реальные имена</a>
+ <a href="#messenger-criteria" class="nav-link">86. Критерии выбора мессенджера</a>
+ <a href="#messengers" class="nav-link">87. Сравнение мессенджеров</a>
+ <a href="#messenger-picks" class="nav-link">88. Какой мессенджер выбрать</a>
+ <a href="#documents" class="nav-link">89. Файлы и редактирование</a>
+ <a href="#secretsharing" class="nav-link">90. Передача сведений и обслуживание</a>
+ <a href="#backup-files" class="nav-link">91. Резервные копии файлов</a>
+ <a href="#backup-disk" class="nav-link">92. Резервная копия диска</a>
+ <a href="#backup-online" class="nav-link">93. Онлайн-бэкапы</a>
+ <a href="#traces" class="nav-link">94. Заметание следов: HDD и SSD</a>
+ <a href="#wipe-disk" class="nav-link">95. Как затереть накопитель</a>
+ <a href="#wipe-by-os" class="nav-link">96. Затирание по ОС и носителям</a>
+ <a href="#delete-files" class="nav-link">97. Удаление отдельных файлов</a>
+ <a href="#amnesic-os" class="nav-link">98. Tails и Whonix Live</a>
+ <a href="#metadata-tools" class="nav-link">99. Удаление метаданных из файлов</a>
+ <a href="#face-obfuscation" class="nav-link">100. Обфускация от распознавания лиц</a>
+ <a href="#cleanup-macos" class="nav-link">101. Очистка следов: macOS</a>
+ <a href="#cleanup-windows" class="nav-link">102. Очистка следов: Windows</a>
+ <a href="#cleanup-linux" class="nav-link">103. Очистка следов: Linux и Qubes</a>
+ <a href="#search-removal" class="nav-link">104. Удаление из поисковых систем</a>
+ <a href="#dead-drop" class="nav-link">105. Коммуникации на виду</a>
+ <a href="#search-detection" class="nav-link">106. Обнаружение обыска вещей</a>
+ <div class="nav-chapter-header">Раздел VIII. OPSEC, Юрисдикции и Финал</div>
+ <a href="#opsec" class="nav-link">107. Операционная безопасность (OPSEC)</a>
+ <a href="#physical-opsec" class="nav-link">108. Физическая OPSEC</a>
+ <a href="#compromised" class="nav-link">109. Обнаружено вмешательство или обыск</a>
+ <a href="#exposed" class="nav-link">110. Вас раскрыли: что делать</a>
+ <a href="#fabricated" class="nav-link">111. Доказательства можно подделать</a>
+ <a href="#support-tor" class="nav-link">112. Поддержка сети Tor</a>
+ <a href="#acknowledgements" class="nav-link">113. Благодарности и проекты</a>
+ <a href="#windows-install" class="nav-link">114. Установка Windows 10/11</a>
+ <a href="#windows-privacy" class="nav-link">115. Настройки конфиденциальности Windows</a>
+ <a href="#windows-telemetry" class="nav-link">116. Утилиты против телеметрии</a>
+ <a href="#system-rescue" class="nav-link">117. System Rescue: стирание SSD</a>
+ <a href="#host-browser" class="nav-link">118. Безопасный браузер в основной ОС</a>
+ <a href="#vendor-tools" class="nav-link">119. Инструменты производителей</a>
+ <a href="#external-ssd" class="nav-link">120. Особенности внешних SSD</a>
+ <a href="#mat2-vm" class="nav-link">121. ВМ mat2-web для метаданных</a>
+ <a href="#phones-warning" class="nav-link">122. Смартфоны при выходе</a>
+ <a href="#anonymous-vpn" class="nav-link">123. Получение анонимного VPN</a>
+ <a href="#no-tor-vpn" class="nav-link">124. Когда Tor и VPN невозможны</a>
+ <a href="#file-integrity" class="nav-link">125. Проверка целостности файлов</a>
+ <a href="#file-signatures" class="nav-link">126. Проверка подлинности (GPG)</a>
+ <a href="#malware-scanning" class="nav-link">127. Проверка на вредоносное ПО</a>
+ <a href="#controlled-computers" class="nav-link">128. Контролируемые компьютеры</a>
+ <a href="#guest-browser" class="nav-link">129. Браузер в гостевой ВМ</a>
+ <a href="#browser-hardening" class="nav-link">130. Усиление защиты браузеров</a>
+ <a href="#nested-virt" class="nav-link">131. Виртуализация и её риски</a>
+ <a href="#tor-browser-setup" class="nav-link">132. Установка Tor Browser</a>
+ <a href="#crypto-payments" class="nav-link">133. Анонимные онлайн-платежи</a>
+ <a href="#stylometry" class="nav-link">134. Противодействие судебной лингвистике</a>
+ <a href="#frontend-instances" class="nav-link">135. Фронтенд-инстансы</a>
+ <a href="#alt-frontends" class="nav-link">136. Альтернативные клиенты: настройка</a>
+ <a href="#search-engines" class="nav-link">137. Выбор поисковой системы</a>
+ <a href="#sharing-checklist" class="nav-link">138. Чек-лист перед передачей</a>
+ <a href="#orbot-android" class="nav-link">139. Orbot на Android</a>
+ <a href="#cis" class="nav-link">140. СНГ-экосистемы</a>
+ <a href="#globalmap" class="nav-link">141. Глобальная карта утечек</a>
+ <a href="#fiveeyes" class="nav-link">142. Альянс «5/9/14 глаз»</a>
+ <a href="#insiderleaks" class="nav-link">143. Инсайдерские сливы</a>
+ <a href="#legal" class="nav-link">144. Юридическая дезинфекция</a>
+ <a href="#metadata" class="nav-link">145. Метаданные файлов</a>
+ <a href="#golden" class="nav-link">146. Правило золотого часа</a>
+ <a href="#telegram" class="nav-link">147. Уязвимости Telegram</a>
+ <a href="#infra" class="nav-link">148. Инфраструктура</a>
+ <a href="#tlock" class="nav-link">149. Тайм-лок шифрование</a>
+ <a href="#stego" class="nav-link">150. Стеганография</a>
+ <a href="#localai" class="nav-link">151. Локальный ИИ</a>
+ <a href="#hardware" class="nav-link">152. Аппаратная гигиена</a>
+ <a href="#end" class="nav-link">153. Послесловие</a>
+ </nav>
+</div>
+
+ <div class="layout">
+
+ <aside class="sidebar" aria-label="Боковая панель содержания">
+ <div class="sidebar-header">
+                <div class="sidebar-header-title">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <line x1="8" y1="6" x2="21" y2="6" />
+                        <line x1="8" y1="12" x2="21" y2="12" />
+                        <line x1="8" y1="18" x2="21" y2="18" />
+                        <line x1="3" y1="6" x2="3.01" y2="6" />
+                        <line x1="3" y1="12" x2="3.01" y2="12" />
+                        <line x1="3" y1="18" x2="3.01" y2="18" />
+                    </svg>
+                    <span>Содержание</span>
+                </div>
+                <div class="sidebar-current" id="sidebar-current-tracker" role="button" tabindex="0" aria-live="polite" title="Нажмите, чтобы показать текущую главу в списке">
+                    <span class="sidebar-current-prefix">ЧТЕНИЕ:</span>
+                    <span class="sidebar-current-text" id="sidebar-current-text">01. Вступление</span>
+                    <svg class="sidebar-current-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/><circle cx="12" cy="12" r="4"/></svg>
+                </div>
+            </div>
+ <div class="sidebar-search-wrap">
+ <div class="toc-search-field">
+    <input type="search" id="toc-search" class="toc-search-input" placeholder="Поиск по оглавлению... (/)" aria-label="Поиск по оглавлению">
+    <button type="button" class="toc-search-clear" id="toc-search-clear" aria-label="Очистить поиск" title="Очистить">&times;</button>
+ </div>
+</div>
+ <nav class="sidebar-nav" aria-label="Оглавление">
+ <div class="toc-empty-state" id="sidebar-empty" style="display:none;">Ничего не найдено</div>
+ <div class="nav-chapter-header">Раздел I. Введение и концепция</div>
+ <a href="#intro" class="nav-link">01. Вступление</a>
+ <a href="#preface" class="nav-link">02. Предисловие</a>
+ <a href="#doxing" class="nav-link">03. Что такое докс?</a>
+ <a href="#fear" class="nav-link">04. Почему бояться?</a>
+ <a href="#privacy" class="nav-link">05. О приватности</a>
+ <a href="#action" class="nav-link">06. И что же делать?</a>
+ <div class="nav-chapter-header">Раздел II. Цифровой след и OSINT</div>
+ <a href="#footprint" class="nav-link">07. Цифровой след</a>
+ <a href="#dossier" class="nav-link">08. Поиск следа: Досье</a>
+ <a href="#resources" class="nav-link">09. Поиск следа: Ресурсы</a>
+ <a href="#tactics" class="nav-link">10. Поиск следа: Тактика</a>
+ <a href="#cleanup" class="nav-link">11. Поиск следа: Что делать?</a>
+ <a href="#deletion" class="nav-link">12. Удаление информации</a>
+ <a href="#legal-self" class="nav-link">13. Юридическая самооборона</a>
+ <a href="#masterlist" class="nav-link">14. Мастер-список</a>
+ <a href="#ai" class="nav-link">15. ИИ-анализ</a>
+ <a href="#wearable" class="nav-link">16. Носимые шпионы</a>
+ <div class="nav-chapter-header">Раздел III. Идентификаторы и слежка</div>
+ <a href="#ip" class="nav-link">17. Ваш IP-адрес</a>
+ <a href="#dns" class="nav-link">18. Ваши DNS-запросы</a>
+ <a href="#hardware-ids" class="nav-link">19. Аппаратные идентификаторы</a>
+ <a href="#wireless" class="nav-link">20. Беспроводная слежка</a>
+ <a href="#correlation" class="nav-link">21. Корреляционные атаки</a>
+ <a href="#fingerprint" class="nav-link">22. Fingerprinting 2.0</a>
+ <a href="#cpu" class="nav-link">23. Ваш процессор</a>
+ <a href="#telemetry" class="nav-link">24. Телеметрия ОС</a>
+ <a href="#smartdevices" class="nav-link">25. Умные устройства</a>
+ <a href="#metadata-you" class="nav-link">26. Ваши метаданные</a>
+ <a href="#behavior" class="nav-link">27. Поведенческий след</a>
+ <a href="#reallife" class="nav-link">28. Реальная жизнь и OSINT</a>
+ <a href="#biometrics" class="nav-link">29. Лицо, голос, биометрия</a>
+ <a href="#gait" class="nav-link">30. Распознавание походки</a>
+ <div class="nav-chapter-header">Раздел IV. Атаки, уязвимости и угрозы</div>
+ <a href="#phishing" class="nav-link">31. Фишинг и социнженерия</a>
+ <a href="#malware" class="nav-link">32. Вредоносное ПО</a>
+ <a href="#badusb" class="nav-link">33. Вредоносные USB</a>
+ <a href="#firmware" class="nav-link">34. Бэкдоры в прошивке</a>
+ <a href="#watermarks" class="nav-link">35. Водяные знаки</a>
+ <a href="#pixelation" class="nav-link">36. Размытие и пикселизация</a>
+ <a href="#crypto" class="nav-link">37. Криптовалютные транзакции</a>
+ <a href="#cloudbackup" class="nav-link">38. Облачные резервные копии</a>
+ <a href="#sidechannel" class="nav-link">39. Атаки по сторонним каналам</a>
+ <a href="#forensics" class="nav-link">40. Криминалистика устройств</a>
+ <a href="#weakcrypto" class="nav-link">41. Плохая криптография</a>
+ <a href="#nolog" class="nav-link">42. Политики «без логов»</a>
+ <a href="#airgap" class="nav-link">43. Атаки на воздушные зазоры</a>
+ <a href="#transparency" class="nav-link">44. Отчёты о прозрачности</a>
+ <a href="#extra-resources" class="nav-link">45. Дополнительные ресурсы</a>
+ <div class="nav-chapter-header">Раздел V. Модели угроз и анонимные маршруты</div>
+ <a href="#zerotrust" class="nav-link">46. Модель Zero Trust</a>
+ <a href="#routes" class="nav-link">47. Выбор маршрута</a>
+ <a href="#threatmodel" class="nav-link">48. Модель угроз и противники</a>
+ <a href="#phonenumber" class="nav-link">49. Анонимный номер телефона</a>
+ <a href="#workspace" class="nav-link">50. Флешка и безопасные места</a>
+ <a href="#route-tor" class="nav-link">51. Маршрут Tor Browser</a>
+ <a href="#route-tails" class="nav-link">52. Маршрут Tails</a>
+ <a href="#hiddenvm" class="nav-link">53. Правдоподобная отрицаемость</a>
+ <a href="#laptop" class="nav-link">54. Выделенный ноутбук</a>
+ <a href="#bios" class="nav-link">55. Настройка BIOS/UEFI</a>
+ <a href="#tamper" class="nav-link">56. Защита от вмешательства</a>
+ <a href="#route-whonix" class="nav-link">57. Маршрут Whonix</a>
+ <div class="nav-chapter-header">Раздел VI. ОС, Виртуализация и Шифрование</div>
+ <a href="#encryption-attacks" class="nav-link">58. Атаки на шифрование</a>
+ <a href="#localsleaks" class="nav-link">59. Локальные утечки на хосте</a>
+ <a href="#host-linux" class="nav-link">60. Хостовая ОС Linux</a>
+ <a href="#host-macos" class="nav-link">61. Хостовая ОС macOS</a>
+ <a href="#host-windows" class="nav-link">62. Хостовая ОС Windows</a>
+ <a href="#veracrypt-simple" class="nav-link">63. Маршрут A/B: VeraCrypt</a>
+ <a href="#veracrypt-hidden" class="nav-link">64. Маршрут C: скрытая ОС</a>
+ <a href="#virtualbox" class="nav-link">65. VirtualBox и изоляция</a>
+ <a href="#connection" class="nav-link">66. Выбор метода подключения</a>
+ <a href="#comparison" class="nav-link">67. Сравнение и рекомендации</a>
+ <a href="#vbox-hardening" class="nav-link">68. Укрепление VirtualBox</a>
+ <a href="#whonix-setup" class="nav-link">69. Настройка Whonix</a>
+ <a href="#vm-linux" class="nav-link">70. ВМ Linux / Whonix</a>
+ <a href="#vm-windows" class="nav-link">71. ВМ Windows 10/11</a>
+ <a href="#vm-android-macos" class="nav-link">72. ВМ Android и macOS</a>
+ <a href="#keepass-vpn" class="nav-link">73. KeePassXC и VPN-клиент</a>
+ <a href="#kill-switch" class="nav-link">74. Аварийный выключатель ВМ</a>
+ <a href="#qubes" class="nav-link">75. Путь Qubes OS</a>
+ <a href="#qubes-setup" class="nav-link">76. Установка Qubes OS</a>
+ <a href="#qubes-vpn" class="nav-link">77. Укрепление и VPN в Qubes</a>
+ <a href="#qubes-guests" class="nav-link">78. Android и Windows в Qubes</a>
+ <div class="nav-chapter-header">Раздел VII. Анонимные личности, связь и софт</div>
+ <a href="#attribution" class="nav-link">79. Корреляция и атрибуция</a>
+ <a href="#captcha" class="nav-link">80. CAPTCHA и барьеры</a>
+ <a href="#verification" class="nav-link">81. Методы верификации аккаунта</a>
+ <a href="#going-online" class="nav-link">82. Выход в сеть: чек-лист</a>
+ <a href="#identities" class="nav-link">83. Создание анонимных личностей</a>
+ <a href="#platforms" class="nav-link">84. Обзор платформ</a>
+ <a href="#exitnode-names" class="nav-link">85. Выходной узел и реальные имена</a>
+ <a href="#messenger-criteria" class="nav-link">86. Критерии выбора мессенджера</a>
+ <a href="#messengers" class="nav-link">87. Сравнение мессенджеров</a>
+ <a href="#messenger-picks" class="nav-link">88. Какой мессенджер выбрать</a>
+ <a href="#documents" class="nav-link">89. Файлы и редактирование</a>
+ <a href="#secretsharing" class="nav-link">90. Передача сведений и обслуживание</a>
+ <a href="#backup-files" class="nav-link">91. Резервные копии файлов</a>
+ <a href="#backup-disk" class="nav-link">92. Резервная копия диска</a>
+ <a href="#backup-online" class="nav-link">93. Онлайн-бэкапы</a>
+ <a href="#traces" class="nav-link">94. Заметание следов: HDD и SSD</a>
+ <a href="#wipe-disk" class="nav-link">95. Как затереть накопитель</a>
+ <a href="#wipe-by-os" class="nav-link">96. Затирание по ОС и носителям</a>
+ <a href="#delete-files" class="nav-link">97. Удаление отдельных файлов</a>
+ <a href="#amnesic-os" class="nav-link">98. Tails и Whonix Live</a>
+ <a href="#metadata-tools" class="nav-link">99. Удаление метаданных из файлов</a>
+ <a href="#face-obfuscation" class="nav-link">100. Обфускация от распознавания лиц</a>
+ <a href="#cleanup-macos" class="nav-link">101. Очистка следов: macOS</a>
+ <a href="#cleanup-windows" class="nav-link">102. Очистка следов: Windows</a>
+ <a href="#cleanup-linux" class="nav-link">103. Очистка следов: Linux и Qubes</a>
+ <a href="#search-removal" class="nav-link">104. Удаление из поисковых систем</a>
+ <a href="#dead-drop" class="nav-link">105. Коммуникации на виду</a>
+ <a href="#search-detection" class="nav-link">106. Обнаружение обыска вещей</a>
+ <div class="nav-chapter-header">Раздел VIII. OPSEC, Юрисдикции и Финал</div>
+ <a href="#opsec" class="nav-link">107. Операционная безопасность (OPSEC)</a>
+ <a href="#physical-opsec" class="nav-link">108. Физическая OPSEC</a>
+ <a href="#compromised" class="nav-link">109. Обнаружено вмешательство или обыск</a>
+ <a href="#exposed" class="nav-link">110. Вас раскрыли: что делать</a>
+ <a href="#fabricated" class="nav-link">111. Доказательства можно подделать</a>
+ <a href="#support-tor" class="nav-link">112. Поддержка сети Tor</a>
+ <a href="#acknowledgements" class="nav-link">113. Благодарности и проекты</a>
+ <a href="#windows-install" class="nav-link">114. Установка Windows 10/11</a>
+ <a href="#windows-privacy" class="nav-link">115. Настройки конфиденциальности Windows</a>
+ <a href="#windows-telemetry" class="nav-link">116. Утилиты против телеметрии</a>
+ <a href="#system-rescue" class="nav-link">117. System Rescue: стирание SSD</a>
+ <a href="#host-browser" class="nav-link">118. Безопасный браузер в основной ОС</a>
+ <a href="#vendor-tools" class="nav-link">119. Инструменты производителей</a>
+ <a href="#external-ssd" class="nav-link">120. Особенности внешних SSD</a>
+ <a href="#mat2-vm" class="nav-link">121. ВМ mat2-web для метаданных</a>
+ <a href="#phones-warning" class="nav-link">122. Смартфоны при выходе</a>
+ <a href="#anonymous-vpn" class="nav-link">123. Получение анонимного VPN</a>
+ <a href="#no-tor-vpn" class="nav-link">124. Когда Tor и VPN невозможны</a>
+ <a href="#file-integrity" class="nav-link">125. Проверка целостности файлов</a>
+ <a href="#file-signatures" class="nav-link">126. Проверка подлинности (GPG)</a>
+ <a href="#malware-scanning" class="nav-link">127. Проверка на вредоносное ПО</a>
+ <a href="#controlled-computers" class="nav-link">128. Контролируемые компьютеры</a>
+ <a href="#guest-browser" class="nav-link">129. Браузер в гостевой ВМ</a>
+ <a href="#browser-hardening" class="nav-link">130. Усиление защиты браузеров</a>
+ <a href="#nested-virt" class="nav-link">131. Виртуализация и её риски</a>
+ <a href="#tor-browser-setup" class="nav-link">132. Установка Tor Browser</a>
+ <a href="#crypto-payments" class="nav-link">133. Анонимные онлайн-платежи</a>
+ <a href="#stylometry" class="nav-link">134. Противодействие судебной лингвистике</a>
+ <a href="#frontend-instances" class="nav-link">135. Фронтенд-инстансы</a>
+ <a href="#alt-frontends" class="nav-link">136. Альтернативные клиенты: настройка</a>
+ <a href="#search-engines" class="nav-link">137. Выбор поисковой системы</a>
+ <a href="#sharing-checklist" class="nav-link">138. Чек-лист перед передачей</a>
+ <a href="#orbot-android" class="nav-link">139. Orbot на Android</a>
+ <a href="#cis" class="nav-link">140. СНГ-экосистемы</a>
+ <a href="#globalmap" class="nav-link">141. Глобальная карта утечек</a>
+ <a href="#fiveeyes" class="nav-link">142. Альянс «5/9/14 глаз»</a>
+ <a href="#insiderleaks" class="nav-link">143. Инсайдерские сливы</a>
+ <a href="#legal" class="nav-link">144. Юридическая дезинфекция</a>
+ <a href="#metadata" class="nav-link">145. Метаданные файлов</a>
+ <a href="#golden" class="nav-link">146. Правило золотого часа</a>
+ <a href="#telegram" class="nav-link">147. Уязвимости Telegram</a>
+ <a href="#infra" class="nav-link">148. Инфраструктура</a>
+ <a href="#tlock" class="nav-link">149. Тайм-лок шифрование</a>
+ <a href="#stego" class="nav-link">150. Стеганография</a>
+ <a href="#localai" class="nav-link">151. Локальный ИИ</a>
+ <a href="#hardware" class="nav-link">152. Аппаратная гигиена</a>
+ <a href="#end" class="nav-link">153. Послесловие</a>
+ </nav>
+ </aside>
+
+ <main id="main-content" class="content">
+
+ <div class="page-header">
+ <h1 data-i18n-brand>Плащ анонимности: Руководство</h1>
+ <p>Практическое руководство по цифровой приватности, анонимности, защите от доксинга и операционной безопасности (OPSEC).</p>
+</div>
+
+        <div id="chapters-root">
+            <noscript>
+                <div class="note note-warning">Для отображения модульных разделов руководства требуется JavaScript.</div>
+            </noscript>
+        </div>
+
+        <script src="assets/data/chapter-01.js"></script>
+        <script src="assets/data/chapter-02.js"></script>
+        <script src="assets/data/chapter-03.js"></script>
+        <script src="assets/data/chapter-04.js"></script>
+        <script src="assets/data/chapter-05.js"></script>
+        <script src="assets/data/chapter-06.js"></script>
+        <script src="assets/data/chapter-07.js"></script>
+        <script src="assets/data/chapter-08.js"></script>
+        <script src="assets/js/chapters-loader.js"></script>
+
+<footer class="site-footer" role="contentinfo">
+            <div class="footer-container">
+                <div class="footer-grid">
+                    
+                    <div class="footer-col footer-col--brand">
+                        <div class="footer-brand">
+                            <span class="footer-logo-dot"></span>
+                            <span class="footer-title" data-i18n-brand>Плащ анонимности: Руководство</span>
+                            <span class="footer-badge">2026</span>
+                        </div>
+                        <p class="footer-desc">
+                            Независимое практическое руководство по кибербезопасности, анонимности, 
+                            операционной безопасности (OPSEC) и защите цифровых прав.
+                        </p>
+                        <div class="footer-security-pill">
+                            <span class="sec-dot"></span>
+                            <span>Zero Logs • No Cookies • Strict CSP • Offline PWA</span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="footer-col">
+                        <div class="footer-heading">Безопасность и Право</div>
+                        <ul class="footer-links">
+                            <li><a href="./privacy.html" class="footer-link">Политика конфиденциальности</a></li>
+                            <li><a href="./disclaimer.html" class="footer-link">Отказ от ответственности</a></li>
+                        </ul>
+                    </div>
+
+                    
+                    <div class="footer-col">
+                        <div class="footer-heading">Проект и Лицензия</div>
+                        <ul class="footer-links">
+                            <li><a href="./canary.html" class="footer-link">Warrant Canary</a></li>
+                            <li><a href="./license.html" class="footer-link">Лицензия и Авторство</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="footer-bottom">
+                    <div class="footer-copy">
+                        © 2026 Cloak Manual. Свободное распространение под CC BY-NC-SA 4.0.
+                    </div>
+                    <div class="footer-built">
+                        Локально • Без трекеров • Без логов
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+ </main></div>
+
+    <button type="button" class="to-top to-top--hidden" id="to-top" aria-label="Наверх" title="Наверх" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="12" y1="19" x2="12" y2="5" />
+            <polyline points="5 12 12 5 19 12" />
+        </svg>
+    </button>
+
+
+    <script src="assets/js/nav.js"></script>
+    <script src="assets/js/copy.js"></script>
+    <script src="assets/js/scroll-top.js"></script>
+    <script src="assets/js/search.js"></script>
+    <script src="assets/js/ui.js"></script>
+</body>
+</html>

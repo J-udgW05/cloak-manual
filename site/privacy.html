@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Политика конфиденциальности // Cloak Manual</title>
+    <meta name="description" content="Политика конфиденциальности Cloak Manual: нулевой сбор логов, отсутствие cookies, техническая изоляция и защита через CSP.">
+    <meta name="robots" content="index, follow">
+    <meta name="referrer" content="no-referrer">
+    <meta name="theme-color" content="#0d1017" id="theme-color-meta">
+    <meta name="color-scheme" content="dark light">
+    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=(), usb=(), browsing-topics=()">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none';">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%20fill='none'%20stroke='%2338bdf8'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'%3E%3Cpath%20d='M7%209l2-5h6l1%205'/%3E%3Cline%20x1='4'%20y1='9'%20x2='20'%20y2='9'/%3E%3Cpath%20d='M8%209c0%203%201%205%203%206l-4%205h10l-2-6'/%3E%3C/svg%3E">
+    <link rel="manifest" href="manifest.json">
+    <script src="assets/js/theme-init.js"></script>
+    <link rel="stylesheet" href="assets/css/tokens.css">
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/layout.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/pages.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Перейти к содержимому</a>
+    <header class="header">
+        <div class="header-inner">
+            <a href="index.html" class="site-logo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" aria-hidden="true">
+                    <path d="M7 9l2-5h6l1 5" />
+                    <line x1="4" y1="9" x2="20" y2="9" />
+                    <path d="M8 9c0 3 1 5 3 6l-4 5h10l-2-6" />
+                </svg>
+                <span class="site-logo-text" data-i18n-brand>Плащ анонимности: Руководство</span>
+            </a>
+            <div class="header-actions">
+                <a href="index.html" class="page-back-link">← К руководству</a>
+                <button class="lang-toggle" id="lang-toggle" type="button" aria-label="Переключить язык на английский (EN)" title="Переключить язык на английский (EN)">RU</button>
+                <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Переключить тему" title="Переключить тему">
+                    <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content" class="subpage-container">
+        <nav class="breadcrumbs" aria-label="Навигация по разделам">
+            <a href="index.html">← Главная</a>
+            <span>/</span>
+            <span>Политика конфиденциальности (Zero Logs)</span>
+        </nav>
+
+        <section class="card">
+            <h1 class="card-title">Политика конфиденциальности (Zero Logs)</h1>
+            <div class="card-body">
+                
+        <p>Cloak Manual создана на фундаментальном принципе: <strong>лучшая защита данных — это их полное отсутствие</strong>. Мы не собираем, не храним, не монетизируем и не передаем третьим лицам какую-либо информацию о посетителях сайта.</p>
+        
+        <div class="inner-card">
+            <div class="inner-title">1. Принцип Zero Logs (Нулевое логирование со стороны проекта)</div>
+            <p>Проект не ведёт собственных журналов подключений, не собирает IP-адреса, заголовки <code>User-Agent</code> или историю переходов (при размещении на статическом хостинге вроде GitHub Pages сетевой транспорт обслуживается инфраструктурой провайдера, но сам сайт не содержит никакой серверной или клиентской телеметрии).</p>
+        </div>
+
+        <div class="inner-card">
+            <div class="inner-title">2. Полное отсутствие Cookies и трекеров</div>
+            <p>На сайте <strong>на 100% отсутствуют</strong> какие-либо сторонние аналитические метрики, маркетинговые пиксели и отслеживающие скрипты (включая Google Analytics, Яндекс.Метрику, трекеры соцсетей, Hotjar и др.). Сайт не создает и не читает файлы <code>cookie</code>.</p>
+        </div>
+
+        <div class="inner-card">
+            <div class="inner-title">3. Локальное хранилище браузера (LocalStorage)</div>
+            <p>Сайт использует веб-хранилище браузера исключительно для одной технической задачи — сохранения выбранной вами темы оформления (тёмная или светлая):</p>
+            <ul class="list">
+                <li><code>bp_theme</code> — сохраняет значение <code>"dark"</code> или <code>"light"</code>.</li>
+            </ul>
+            <p>Этот параметр никогда не покидает ваше устройство, не передается по сети и может быть очищен в любой момент удалением данных сайта в браузере.</p>
+        </div>
+
+        <div class="inner-card">
+            <div class="inner-title">4. Изоляция на уровне браузера (Content Security Policy)</div>
+            <p>Сайт защищён строгой политикой безопасности контента (CSP), встроенной в HTTP-заголовки и мета-теги:</p>
+            <div class="code-block">connect-src 'none'; frame-src 'none'; object-src 'none'; default-src 'none';</div>
+            <p>Директива <code>connect-src 'none'</code> на уровне браузера блокирует любые исходящие сетевые запросы (XHR, Fetch, WebSocket), делая утечку телеметрии технически невозможной.</p>
+        </div>
+
+        <div class="inner-card">
+            <div class="inner-title">5. Автономный режим (PWA & Service Worker)</div>
+            <p>Сайт функционирует как Progressive Web Application. После первой загрузки служебный Service Worker кэширует страницы локально. Вы можете полностью отключить интернет или использовать сайт в изолированной виртуальной машине — он продолжит работать на 100% автономно без обращения к сети.</p>
+        </div>
+
+        <div class="inner-card">
+            <div class="inner-title">6. Внешние ссылки</div>
+            <p>Сайт содержит ссылки на сторонние исследовательские материалы, законы и архивы. Все они снабжены атрибутами <code>rel="noopener noreferrer nofollow"</code> и политикой <code>Referrer-Policy: no-referrer</code>, что предотвращает утечку адреса страницы при клике по внешней ссылке.</p>
+        </div>
+        
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer site-footer--subpage" role="contentinfo">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-col footer-col--brand">
+                    <div class="footer-brand">
+                        <span class="footer-logo-dot"></span>
+                        <span class="footer-title" data-i18n-brand>Плащ анонимности: Руководство</span>
+                        <span class="footer-badge">2026</span>
+                    </div>
+                    <p class="footer-desc">
+                        Независимое практическое руководство по кибербезопасности, анонимности,
+                        операционной безопасности (OPSEC) и защите цифровых прав.
+                    </p>
+                    <div class="footer-security-pill">
+                        <span class="sec-dot"></span>
+                        <span>Zero Logs • No Cookies • Strict CSP • Offline PWA</span>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <div class="footer-heading">Безопасность и Право</div>
+                    <ul class="footer-links">
+                        <li><a href="./privacy.html" class="footer-link">Политика конфиденциальности</a></li>
+                        <li><a href="./disclaimer.html" class="footer-link">Отказ от ответственности</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <div class="footer-heading">Проект и Лицензия</div>
+                    <ul class="footer-links">
+                        <li><a href="./canary.html" class="footer-link">Warrant Canary</a></li>
+                        <li><a href="./license.html" class="footer-link">Лицензия и Авторство</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-copy">
+                    © 2026 Cloak Manual. Свободное распространение под CC BY-NC-SA 4.0.
+                </div>
+                <div class="footer-built">
+                    <a href="./index.html" class="footer-link">На главную страницу руководства →</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/copy.js"></script>
+    <script src="assets/js/ui.js"></script>
+</body>
+</html>

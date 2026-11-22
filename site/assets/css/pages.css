@@ -1,0 +1,108 @@
+/* Secondary Legal / Trust Pages Layout (Unified with index.html) */
+.subpage-container {
+    max-width: 960px;
+    width: 100%;
+    margin: 0 auto;
+    padding: calc(var(--header-height) + 28px) 20px 32px;
+}
+
+.breadcrumbs {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    margin-bottom: 20px;
+}
+
+.breadcrumbs a {
+    color: var(--color-accent);
+    text-decoration: none;
+}
+
+.breadcrumbs a:hover {
+    text-decoration: underline;
+}
+
+.page-back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 12px;
+    height: 36px;
+    border-radius: 6px;
+    border: 1px solid var(--color-border);
+    background: var(--color-panel-inner);
+    color: var(--color-text-dim);
+    font-size: 0.82rem;
+    font-weight: 500;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.page-back-link:hover {
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+    background: var(--color-panel);
+}
+
+.subpage-container .card {
+    margin-bottom: 0;
+}
+
+.subpage-container .card-title {
+    font-size: clamp(1.35rem, 3vw, 1.85rem);
+    font-weight: 700;
+    color: var(--color-heading);
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.subpage-container .card-body p {
+    margin-bottom: 14px;
+    color: var(--color-text-dim);
+}
+
+.subpage-container .card-body p:last-child {
+    margin-bottom: 0;
+}
+
+.subpage-container .inner-card {
+    margin-top: 16px;
+}
+
+.subpage-container code {
+    font-family: var(--font-mono);
+    font-size: 0.88em;
+    color: var(--color-accent);
+    background: var(--color-panel-inner);
+    padding: 2px 6px;
+    border-radius: 3px;
+    border: 1px solid var(--color-border);
+}
+
+.site-footer--subpage {
+    max-width: 920px;
+    margin: 24px auto 40px;
+}
+
+@media (max-width: 960px) {
+    .site-footer--subpage {
+        margin: 20px 20px 40px;
+    }
+}
+
+@media (max-width: 640px) {
+    .subpage-container {
+        padding: calc(var(--header-height) + 18px) 16px 24px;
+    }
+    .site-footer--subpage {
+        margin: 16px 16px 32px;
+    }
+    .page-back-link {
+        padding: 0 10px;
+        font-size: 0.78rem;
+    }
+}
