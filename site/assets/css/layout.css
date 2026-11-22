@@ -610,7 +610,7 @@
 }
 .footer-grid {
     display: grid;
-    grid-template-columns: 2fr 1.2fr 1.2fr;
+    grid-template-columns: 2fr 1fr;
     gap: 36px;
     margin-bottom: 32px;
 }
@@ -660,26 +660,6 @@
     line-height: 1.6;
     margin: 0;
     max-width: 440px;
-}
-.footer-security-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 6px 12px;
-    background: var(--color-green-bg);
-    border: 1px solid var(--color-green-border);
-    border-radius: 9999px;
-    font-size: 0.74rem;
-    font-weight: 600;
-    color: var(--color-green-text);
-    width: fit-content;
-}
-.footer-security-pill .sec-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--color-status-online);
-    box-shadow: 0 0 6px var(--color-status-online);
 }
 .footer-heading {
     font-size: 0.8rem;

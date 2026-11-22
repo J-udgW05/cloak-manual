@@ -1,14 +1,13 @@
 /* Cloak Manual — Offline Service Worker */
 'use strict';
 
-var CACHE_NAME = 'cloak-manual-v31';
+var CACHE_NAME = 'cloak-manual-v32';
 var ASSETS = [
     './',
     './index.html',
     './manifest.json',
     './privacy.html',
     './disclaimer.html',
-    './canary.html',
     './license.html',
     './assets/img/logo.svg',
     './assets/css/tokens.css',

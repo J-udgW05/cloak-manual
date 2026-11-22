@@ -54,10 +54,9 @@ cloak-manual/
 │   ├── index.html                 # Main handbook shell and navigation
 │   ├── privacy.html               # Zero-logs privacy policy
 │   ├── disclaimer.html            # Defense-only legal disclaimer
-│   ├── canary.html                # Warrant Canary declaration
 │   ├── license.html               # CC BY-NC-SA 4.0 & MIT licensing details
 │   ├── manifest.json              # PWA Web App Manifest
-│   ├── sw.js                      # Offline Service Worker (cloak-manual-v25)
+│   ├── sw.js                      # Offline Service Worker (cloak-manual-v32)
 │   ├── _headers                   # Security HTTP headers (Cloudflare Pages / Netlify)
 │   └── assets/
 │       ├── css/                   # Modular design tokens and stylesheets
