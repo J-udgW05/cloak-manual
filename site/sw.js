@@ -1,7 +1,7 @@
 /* Cloak Manual — Offline Service Worker */
 'use strict';
 
-var CACHE_NAME = 'cloak-manual-v37';
+var CACHE_NAME = 'cloak-manual-v38';
 var ASSETS = [
     './',
     './index.html',
@@ -19,7 +19,6 @@ var ASSETS = [
     './assets/js/chapters-loader.js',
     './assets/js/nav.js',
     './assets/js/copy.js',
-    './assets/js/scroll-top.js',
     './assets/js/search.js',
     './assets/js/ui.js',
     './assets/data/chapter-01.js',
@@ -41,7 +40,7 @@ self.addEventListener('install', function (event) {
                         if (response && response.status === 200) {
                             return cache.put(url, response);
                         }
-                    });
+                    }).catch(function () {});
                 })
             );
         }).then(function () {

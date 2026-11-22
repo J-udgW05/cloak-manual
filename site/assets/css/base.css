@@ -19,6 +19,7 @@ html {
 }
 
 body {
+    margin: 0;
     background: var(--color-bg);
     color: var(--color-text);
     font-family: var(--font-sans);
@@ -28,6 +29,13 @@ body {
     overflow-x: clip;
     overflow-wrap: break-word;
     -webkit-text-size-adjust: 100%;
+}
+
+h1,
+h2,
+h3,
+p {
+    margin: 0;
 }
 
 a {

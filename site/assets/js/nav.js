@@ -342,8 +342,11 @@
         overlay.classList.add('open');
         document.body.style.overflow = 'hidden';
         if (openBtn) openBtn.setAttribute('aria-expanded', 'true');
-        var toTopBtn = document.getElementById('to-top');
-        if (toTopBtn) toTopBtn.classList.add('to-top--hidden');
+        var toTopBtn = document.getElementById('page-up-btn') || document.getElementById('to-top');
+        if (toTopBtn) {
+            toTopBtn.classList.add('page-up-btn--hidden');
+            toTopBtn.classList.add('to-top--hidden');
+        }
         if (closeBtn) closeBtn.focus();
 
         if (currentActiveId) {
