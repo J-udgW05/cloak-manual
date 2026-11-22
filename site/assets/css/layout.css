@@ -78,8 +78,8 @@
     align-items: center;
     justify-content: center;
     height: 36px;
-    padding: 0 9px;
-    gap: 4px;
+    padding: 0 11px;
+    gap: 5px;
     border-radius: 6px;
     color: var(--color-text-muted);
     border: 1px solid var(--color-border);
@@ -153,9 +153,10 @@
     border-radius: 4px;
     border: none;
     background: transparent;
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    font-weight: 700;
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
     line-height: 1.2;
     color: var(--color-text-muted);
     cursor: pointer;
