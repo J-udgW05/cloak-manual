@@ -26,7 +26,7 @@
     });
 })();
 
-/* Language switcher (brand & title localization; full EN content planned) */
+/* Language switcher (Globe + Chevron #L07 with Segmented Switch RU | EN popover) */
 (function () {
     'use strict';
 
@@ -35,16 +35,43 @@
         en: 'Cloak Manual'
     };
 
+    var PAGE_TITLES = {
+        index: { ru: 'Плащ анонимности: Руководство', en: 'Cloak Manual' },
+        privacy: { ru: 'Политика конфиденциальности', en: 'Privacy Policy' },
+        disclaimer: { ru: 'Отказ от ответственности', en: 'Legal Disclaimer' },
+        license: { ru: 'Лицензия открытого контента', en: 'Open Content License' }
+    };
+
+    var langDropdown = document.getElementById('lang-dropdown');
     var langBtn = document.getElementById('lang-toggle');
-    var baseTitle = document.title;
-    var titlePrefix = baseTitle.indexOf(' // ') !== -1 ? baseTitle.split(' // ')[0] : '';
+    var segBtns = document.querySelectorAll('.lang-seg-btn[data-lang-opt]');
+
+    function getPageKey() {
+        var path = (window.location.pathname || '').toLowerCase();
+        if (path.indexOf('privacy.html') !== -1) return 'privacy';
+        if (path.indexOf('disclaimer.html') !== -1) return 'disclaimer';
+        if (path.indexOf('license.html') !== -1) return 'license';
+        return 'index';
+    }
 
     function getLang() {
         return document.documentElement.getAttribute('data-lang') === 'en' ? 'en' : 'ru';
     }
 
+    function closeDropdown() {
+        if (langDropdown) {
+            langDropdown.classList.remove('is-open');
+        }
+        if (langBtn) {
+            langBtn.setAttribute('aria-expanded', 'false');
+        }
+    }
+
     function applyLang(lang) {
         var brand = BRAND[lang] || BRAND.ru;
+        var pageKey = getPageKey();
+        var titleEntry = PAGE_TITLES[pageKey] || PAGE_TITLES.index;
+
         document.documentElement.setAttribute('data-lang', lang);
         document.documentElement.setAttribute('lang', lang);
         try {
@@ -59,11 +86,21 @@
             el.textContent = '© 2026 ' + brand + '. Свободное распространение под CC BY-NC-SA 4.0.';
         });
 
-        document.title = titlePrefix ? (titlePrefix + ' // ' + brand) : brand;
+        document.title = titleEntry[lang] || titleEntry.ru;
+
+        segBtns.forEach(function (btn) {
+            var opt = btn.getAttribute('data-lang-opt');
+            if (opt === lang) {
+                btn.classList.add('active');
+                btn.setAttribute('aria-pressed', 'true');
+            } else {
+                btn.classList.remove('active');
+                btn.setAttribute('aria-pressed', 'false');
+            }
+        });
 
         if (langBtn) {
-            langBtn.textContent = lang.toUpperCase();
-            var label = lang === 'ru' ? 'Переключить язык на английский (EN)' : 'Switch language to Russian (RU)';
+            var label = lang === 'ru' ? 'Язык: RU (выбрать язык)' : 'Language: EN (select language)';
             langBtn.setAttribute('aria-label', label);
             langBtn.setAttribute('title', label);
         }
@@ -71,9 +108,34 @@
 
     applyLang(getLang());
 
-    if (langBtn) {
-        langBtn.addEventListener('click', function () {
-            applyLang(getLang() === 'ru' ? 'en' : 'ru');
+    if (langBtn && langDropdown) {
+        langBtn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            var isOpen = langDropdown.classList.toggle('is-open');
+            langBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+
+        segBtns.forEach(function (btn) {
+            btn.addEventListener('click', function (e) {
+                e.stopPropagation();
+                var opt = btn.getAttribute('data-lang-opt');
+                if (opt === 'ru' || opt === 'en') {
+                    applyLang(opt);
+                }
+                closeDropdown();
+            });
+        });
+
+        document.addEventListener('click', function (e) {
+            if (!langDropdown.contains(e.target)) {
+                closeDropdown();
+            }
+        });
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                closeDropdown();
+            }
         });
     }
 })();

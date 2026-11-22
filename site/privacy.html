@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Политика конфиденциальности // Cloak Manual</title>
+    <title>Политика конфиденциальности</title>
     <meta name="description" content="Политика конфиденциальности Cloak Manual: нулевой сбор логов, отсутствие cookies, техническая изоляция и защита через CSP.">
     <meta name="robots" content="index, follow">
     <meta name="referrer" content="no-referrer">
@@ -36,7 +36,22 @@
             </a>
             <div class="header-actions">
                 <a href="index.html" class="page-back-link">← К руководству</a>
-                <button class="lang-toggle" id="lang-toggle" type="button" aria-label="Переключить язык на английский (EN)" title="Переключить язык на английский (EN)">RU</button>
+                <div class="lang-dropdown" id="lang-dropdown">
+                    <button class="lang-toggle" id="lang-toggle" type="button" aria-label="Выбрать язык" title="Выбрать язык" aria-expanded="false" aria-haspopup="true">
+                        <svg class="lang-globe-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="2" y1="12" x2="22" y2="12"></line>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                        </svg>
+                        <svg class="lang-chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div class="lang-popover" id="lang-popover" role="group" aria-label="Язык / Language">
+                        <button type="button" class="lang-seg-btn active" data-lang-opt="ru">RU</button>
+                        <button type="button" class="lang-seg-btn" data-lang-opt="en">EN</button>
+                    </div>
+                </div>
                 <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Переключить тему" title="Переключить тему">
                     <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <circle cx="12" cy="12" r="5"></circle>
@@ -138,9 +153,6 @@
             <div class="footer-bottom">
                 <div class="footer-copy">
                     © 2026 Cloak Manual. Свободное распространение под CC BY-NC-SA 4.0.
-                </div>
-                <div class="footer-built">
-                    <a href="./index.html" class="footer-link">На главную страницу руководства →</a>
                 </div>
             </div>
         </div>
