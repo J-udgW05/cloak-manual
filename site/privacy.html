@@ -11,7 +11,7 @@
     <meta name="theme-color" content="#0d1017" id="theme-color-meta">
     <meta name="color-scheme" content="dark light">
     <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=(), usb=(), browsing-topics=()">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none';">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%20fill='none'%20stroke='%2338bdf8'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'%3E%3Cpath%20d='M7%209l2-5h6l1%205'/%3E%3Cline%20x1='4'%20y1='9'%20x2='20'%20y2='9'/%3E%3Cpath%20d='M8%209c0%203%201%205%203%206l-4%205h10l-2-6'/%3E%3C/svg%3E">
     <link rel="manifest" href="manifest.json">
     <script src="assets/js/theme-init.js"></script>
@@ -97,11 +97,12 @@
 
         <div class="inner-card">
             <div class="inner-title">3. Локальное хранилище браузера (LocalStorage)</div>
-            <p>Сайт использует веб-хранилище браузера исключительно для одной технической задачи — сохранения выбранной вами темы оформления (тёмная или светлая):</p>
+            <p>Сайт использует веб-хранилище браузера исключительно для технических настроек интерфейса — сохранения выбранной вами темы оформления и языка интерфейса:</p>
             <ul class="list">
                 <li><code>bp_theme</code> — сохраняет значение <code>"dark"</code> или <code>"light"</code>.</li>
+                <li><code>bp_lang</code> — сохраняет значение <code>"ru"</code> или <code>"en"</code>.</li>
             </ul>
-            <p>Этот параметр никогда не покидает ваше устройство, не передается по сети и может быть очищен в любой момент удалением данных сайта в браузере.</p>
+            <p>Эти параметры никогда не покидают ваше устройство, не передаются по сети и могут быть очищены в любой момент удалением данных сайта в браузере.</p>
         </div>
 
         <div class="inner-card">

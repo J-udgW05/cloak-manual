@@ -614,7 +614,7 @@
 
 /* Print Styles */
 @media print {
-    .header, .sidebar, .mobile-menu, .overlay, .page-up-btn, .to-top, .code-copy, .theme-toggle, .sidebar-search-wrap, .mobile-search-wrap {
+    .header, .sidebar, .mobile-menu, .overlay, .page-up-btn, .to-top, .code-copy, .card-link-copy, .lang-dropdown, .theme-toggle, .sidebar-search-wrap, .mobile-search-wrap {
         display: none !important;
     }
     body {

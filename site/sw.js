@@ -1,7 +1,7 @@
 /* Cloak Manual — Offline Service Worker */
 'use strict';
 
-var CACHE_NAME = 'cloak-manual-v38';
+var CACHE_NAME = 'cloak-manual-v39';
 var ASSETS = [
     './',
     './index.html',
@@ -16,19 +16,10 @@ var ASSETS = [
     './assets/css/components.css',
     './assets/css/pages.css',
     './assets/js/theme-init.js',
-    './assets/js/chapters-loader.js',
     './assets/js/nav.js',
     './assets/js/copy.js',
     './assets/js/search.js',
-    './assets/js/ui.js',
-    './assets/data/chapter-01.js',
-    './assets/data/chapter-02.js',
-    './assets/data/chapter-03.js',
-    './assets/data/chapter-04.js',
-    './assets/data/chapter-05.js',
-    './assets/data/chapter-06.js',
-    './assets/data/chapter-07.js',
-    './assets/data/chapter-08.js'
+    './assets/js/ui.js'
 ];
 
 self.addEventListener('install', function (event) {

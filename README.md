@@ -31,15 +31,16 @@ Cloak Manual is a structured, offline-capable reference covering **153 sections*
 
 The web application is a self-contained static client with no backend, no third-party CDNs, and no external network requests:
 
-- **Zero Telemetry & No Cookies:** no analytics, tracking pixels, external fonts, or third-party scripts. Only `localStorage` key `bp_theme` is stored locally to persist the selected color theme.
+- **Zero Telemetry & No Cookies:** no analytics, tracking pixels, external fonts, or third-party scripts. Only `localStorage` keys `bp_theme` and `bp_lang` are stored locally to persist the selected color theme and UI language.
 - **Strict Content Security Policy (CSP):**
   ```http
-  default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none';
+  default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none';
   ```
-  `connect-src 'none'` blocks all outbound `fetch`, `XHR`, and `WebSocket` requests at the browser level.
+  `connect-src 'none'` blocks all outbound `fetch`, `XHR`, and `WebSocket` requests at the browser level, and `script-src 'self'` blocks inline scripts.
+- **100% No-JS Ready:** all 153 sections and table-of-contents anchor links are embedded directly in `site/index.html`, ensuring full access even in Tor Browser *Safest* mode (`JavaScript` disabled).
 - **External Link Isolation:** all 4190+ external links enforce `target="_blank" rel="noopener noreferrer nofollow"` alongside `Referrer-Policy: no-referrer`.
 - **Security Headers ([`site/_headers`](site/_headers)):** `X-Frame-Options: DENY`, `X-Content-Type-Options: nosniff`, `Referrer-Policy: no-referrer`, and restrictive `Permissions-Policy`.
-- **Offline PWA ([`site/sw.js`](site/sw.js)):** Service Worker (`cloak-manual-v25`) caches all CSS, JS, and chapter modules for full offline operation.
+- **Offline PWA ([`site/sw.js`](site/sw.js)):** Service Worker (`cloak-manual-v39`) caches all HTML, CSS, and JS modules for full offline operation.
 
 ---
 
@@ -51,17 +52,17 @@ cloak-manual/
 │   └── workflows/
 │       └── deploy-pages.yml       # Automated GitHub Pages deployment from ./site
 ├── site/
-│   ├── index.html                 # Main handbook shell and navigation
+│   ├── index.html                 # Main handbook (all 153 sections embedded, 100% No-JS ready)
 │   ├── privacy.html               # Zero-logs privacy policy
 │   ├── disclaimer.html            # Defense-only legal disclaimer
 │   ├── license.html               # CC BY-NC-SA 4.0 & MIT licensing details
 │   ├── manifest.json              # PWA Web App Manifest
-│   ├── sw.js                      # Offline Service Worker (cloak-manual-v38)
+│   ├── sw.js                      # Offline Service Worker (cloak-manual-v39)
 │   ├── _headers                   # Security HTTP headers (Cloudflare Pages / Netlify)
 │   └── assets/
 │       ├── css/                   # Modular design tokens and stylesheets
-│       ├── js/                    # Client navigation, search, copy, and theme modules
-│       └── data/                  # Modular chapter content (chapter-01.js .. chapter-08.js)
+│       ├── img/                   # Brand SVG logo
+│       └── js/                    # Client navigation, search, copy, and theme modules
 ├── .gitignore
 └── README.md
 ```

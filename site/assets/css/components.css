@@ -6,6 +6,9 @@
     border-radius: 4px;
     padding: 28px 32px;
     margin-bottom: 16px;
+    /* shortcut: intrinsic height estimate for 153 sections, tune if layout shifts occur */
+    content-visibility: auto;
+    contain-intrinsic-size: auto 600px;
 }
 
 .card-title {
@@ -138,36 +141,28 @@
 .note p { margin: 8px 0 0; }
 .note p:first-child { margin-top: 0; }
 
-.note-red {
+.note-red,
+.note-danger {
     background: var(--color-red-bg);
     border-left: 3px solid var(--color-red-border);
     color: var(--color-red-text);
 }
 
-.note-orange {
-    background: var(--color-orange-bg);
-    border-left: 3px solid var(--color-orange-border);
-    color: var(--color-orange-text);
-}
-
-.note-cyan {
-    background: var(--color-cyan-bg);
-    border-left: 3px solid var(--color-cyan-border);
-    color: var(--color-cyan-text);
-}
-
-.note-green {
-    background: var(--color-green-bg);
-    border-left: 3px solid var(--color-green-border);
-    color: var(--color-green-text);
-}
-
+.note-orange,
 .note-warning {
     background: var(--color-orange-bg);
     border-left: 3px solid var(--color-orange-border);
     color: var(--color-orange-text);
 }
 
+.note-cyan,
+.note-info {
+    background: var(--color-cyan-bg);
+    border-left: 3px solid var(--color-cyan-border);
+    color: var(--color-cyan-text);
+}
+
+.note-green,
 .note-success {
     background: var(--color-green-bg);
     border-left: 3px solid var(--color-green-border);
@@ -385,7 +380,8 @@ a.tag:hover .ext-arrow {
 }
 
 /* Blockquotes & Tactics */
-.quote {
+.quote,
+.blockquote {
     border-left: 2px solid var(--color-accent);
     padding-left: 14px;
     font-style: italic;
@@ -409,6 +405,12 @@ a.tag:hover .ext-arrow {
     font-size: 0.93rem;
     color: var(--color-text-dim);
     margin-top: 4px;
+}
+
+.tactic .tactic-counter {
+    color: var(--color-green-text);
+    font-weight: 500;
+    margin-top: 6px;
 }
 
 
