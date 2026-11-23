@@ -2,6 +2,8 @@
 
 Practical handbook on digital privacy, anonymity, OS hardening, and operational security (OPSEC).
 
+**English** | [Русский](README_RU.md)
+
 [![Deploy GitHub Pages](https://github.com/J-udgW05/cloak-manual/actions/workflows/deploy-pages.yml/badge.svg)](https://github.com/J-udgW05/cloak-manual/actions/workflows/deploy-pages.yml)
 [![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC_BY--NC--SA_4.0-334155.svg)](site/license.html)
 [![Privacy: Zero Logs](https://img.shields.io/badge/Privacy-Zero_Logs-166534.svg)](site/privacy.html)
@@ -38,9 +40,9 @@ The web application is a self-contained static client with no backend, no third-
   ```
   `connect-src 'none'` blocks all outbound `fetch`, `XHR`, and `WebSocket` requests at the browser level, and `script-src 'self'` blocks inline scripts.
 - **100% No-JS Ready:** all 153 sections and table-of-contents anchor links are embedded directly in `site/index.html` (RU) and `site/en/index.html` (EN), ensuring full access even in Tor Browser *Safest* mode (`JavaScript` disabled).
-- **External Link Isolation:** all 4190+ external links enforce `target="_blank" rel="noopener noreferrer nofollow"` alongside `Referrer-Policy: no-referrer`.
+- **External Link Isolation:** all 4,200+ external links enforce `target="_blank" rel="noopener noreferrer nofollow"` alongside `Referrer-Policy: no-referrer`.
 - **Security Headers ([`site/_headers`](site/_headers)):** `X-Frame-Options: DENY`, `X-Content-Type-Options: nosniff`, `Referrer-Policy: no-referrer`, and restrictive `Permissions-Policy`.
-- **Offline PWA ([`site/sw.js`](site/sw.js)):** Service Worker (`cloak-manual-v40`) caches all RU & EN HTML, CSS, and JS modules for full offline operation.
+- **Offline PWA ([`site/sw.js`](site/sw.js)):** Service Worker caches all RU & EN HTML, CSS, and JS modules for full offline operation.
 
 ---
 
@@ -62,14 +64,15 @@ cloak-manual/
 │   │   ├── disclaimer.html        # Defense-only legal disclaimer (EN)
 │   │   └── license.html           # CC BY-NC-SA 4.0 & MIT licensing details (EN)
 │   ├── manifest.json              # PWA Web App Manifest
-│   ├── sw.js                      # Offline Service Worker (cloak-manual-v40)
+│   ├── sw.js                      # Offline Service Worker
 │   ├── _headers                   # Security HTTP headers (Cloudflare Pages / Netlify)
 │   └── assets/
 │       ├── css/                   # Modular design tokens and stylesheets
 │       ├── img/                   # Brand SVG logo
 │       └── js/                    # Client navigation, search, copy, language, and theme modules
 ├── .gitignore
-└── README.md
+├── README.md
+└── README_RU.md
 ```
 
 ---
@@ -90,3 +93,4 @@ Then open `http://localhost:8080/`.
 
 - Handbook content is licensed under **[Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)](https://creativecommons.org/licenses/by-nc-sa/4.0/)** ([details](site/license.html)).
 - Client scripts, stylesheets, and navigation code are licensed under the **MIT License**.
+- Intended strictly for educational and defensive purposes — see the [Disclaimer](site/disclaimer.html).
