@@ -1,4 +1,4 @@
-<h1><img src="site/assets/img/logo.svg" width="34" height="34" align="absmiddle" alt="Cloak Manual"> Cloak Manual</h1>
+<h1><img src="site/assets/img/logo.svg" width="25" height="25" alt="Cloak Manual"> Cloak Manual</h1>
 
 Практическое руководство по цифровой приватности, анонимности, защите ОС и операционной безопасности (OPSEC).
 
